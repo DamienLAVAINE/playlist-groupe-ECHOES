@@ -11,7 +11,7 @@ height: 100vh;
 }
 
 .sidebar {
-width: 300px;
+width: 380px;
 background: #181818;
 padding: 15px;
 overflow-y: auto;
@@ -23,6 +23,10 @@ margin: 5px 0;
 background: #222;
 cursor: pointer;
 border-radius: 6px;
+
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 }
 
 .track:hover {
