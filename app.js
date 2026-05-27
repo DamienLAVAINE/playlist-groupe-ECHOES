@@ -27,8 +27,16 @@ function playTrack(i) {
 }
 
 function playPause() {
-  if (audio.paused) audio.play();
-  else audio.pause();
+  if (!audio.src) {
+    playTrack(current);
+    return;
+  }
+
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
 }
 
 function nextTrack() {
@@ -40,3 +48,7 @@ function prevTrack() {
   current = (current - 1 + tracks.length) % tracks.length;
   playTrack(current);
 }
+
+audio.addEventListener("ended", () => {
+  nextTrack();
+});
