@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Playlist Groupe</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <div class="sidebar">
+    <h2>🎸 Playlist Groupe</h2>
+
+    <div id="playlist"></div>
+  </div>
+
+  <div class="player">
+    <h3 id="title">Sélectionne un morceau</h3>
+
+    <audio id="audio" controls></audio>
+
+    <div class="controls">
+      <button onclick="prevTrack()">⏮</button>
+      <button onclick="playPause()">▶ / ⏸</button>
+      <button onclick="nextTrack()">⏭</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
