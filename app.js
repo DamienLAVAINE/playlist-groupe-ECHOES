@@ -1,6 +1,6 @@
 const tracks = [
   { name: "Echoes (tu nous connais pas)", file: "audio/ZOOM0140 - Echoes - Echoes (tu nous connais pas) remixée.mp3" },
-  { name: "Echoes - Aya", file: "audio/ZOOM0144 - Echoes - Aya - remixée + fin net bla" },
+  { name: "Echoes - Aya", file: "audio/ZOOM0144 - Echoes - Aya - remixée + fin net bla.mp3" },
   { name: "Echoes - Cause toujours", file: "audio/ZOOM0236 - Cause toujours 26.05 remixé v1.mp3" },
 
 ];
