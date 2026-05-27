@@ -25,15 +25,13 @@ const tracks = [
   { name: "Banquet/BLOC PARTY", file: "audio/BLOC PARTY - Banquet.m4a" }, 
   { name: "Medley", file: "Audio/MEDLEY - Enter rock to hell.mp3" }, 
   { name: "Song2(+0.5)/BLUR", file: "Audio/BLUR - Song 2 (+ 0,5 ton).mp3" }, 
-  { name: "Cause toujours/ECHOES", file: "audio/ZOOM0236 - Cause toujours 26.05 remixé v1.mp3" }
-  { name: "The Pretender(avec presentation Echoes)/FOO FIGHTERS", file: "audio/Foo Fighters - The Pretender (avec taxi, another one, présentation...).mp3" } 
-  { name: "Zombie/THE CRANBERRIES", file: "audio/THE CRANBERRIES - Zombie.mp3" }
-  { name: "7 Nation army/THE WHITE STRIPES", file: "audio/THE WHITE STRIPES - 7 Nation army (version Echoes).MP3" }
+  { name: "Cause toujours/ECHOES", file: "audio/ZOOM0236 - Cause toujours 26.05 remixé v1.mp3" },
+  { name: "The Pretender(avec presentation Echoes)/FOO FIGHTERS", file: "audio/Foo Fighters - The Pretender (avec taxi, another one, présentation...).mp3" },
+  { name: "Zombie/THE CRANBERRIES", file: "audio/THE CRANBERRIES - Zombie.mp3" },
+  { name: "7 Nation army/THE WHITE STRIPES", file: "audio/THE WHITE STRIPES - 7 Nation army (version Echoes).MP3" },
   { name: "Nothing else matters(-1ton)/METALLICA", file: "audio/METALLICA - Nothing Else Matters (-1 ton).mp3" }
     
-  
-
-  
+   
 ];
 
 let current = 0;
