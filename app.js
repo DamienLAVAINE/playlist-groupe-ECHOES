@@ -1,9 +1,8 @@
 const tracks = [
-  { name: "Time is running out", file: "audio/time_is_running_out.mp3" },
-  { name: "Use somebody", file: "audio/use_somebody.mp3" },
-  { name: "Creep", file: "audio/creep.mp3" },
-  { name: "Plug in baby", file: "audio/plug_in_baby.mp3" },
-  { name: "Can't stop", file: "audio/cant_stop.mp3" }
+  { name: "Echoes (tu nous connais pas)", file: "audio/ZOOM0140 - Echoes - Echoes (tu nous connais pas) remixée.mp3" },
+  { name: "Echoes - Aya", file: "audio/ZOOM0144 - Echoes - Aya - remixée + fin net bla" },
+  { name: "Echoes - Cause toujours", file: "audio/ZOOM0236 - Cause toujours 26.05 remixé v1.mp3" },
+
 ];
 
 let current = 0;
