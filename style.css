@@ -8,15 +8,16 @@ color: white;
 .container {
 display: flex;
 height: 100vh;
+overflow: hidden;
 }
 
 .sidebar {
-width: 30vw;
-min-width: 220px;
-max-width: 420px;
+width: 320px;
+min-width: 320px;
 background: #181818;
 padding: 15px;
 overflow-y: auto;
+box-sizing: border-box;
 }
 
 .track {
@@ -47,4 +48,34 @@ align-items: center;
 margin: 10px;
 padding: 10px 15px;
 font-size: 16px;
+}
+
+@media (max-width: 768px) {
+
+  .sidebar {
+    width: 42vw;
+    min-width: 42vw;
+    max-width: 42vw;
+    padding: 10px;
+  }
+
+  .track {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .title,
+  h2 {
+    font-size: 28px;
+  }
+
+  .player {
+    flex: 1;
+    padding: 10px;
+  }
+
+  audio {
+    width: 95%;
+  }
+
 }
