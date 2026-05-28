@@ -351,7 +351,7 @@ function draw() {
 
     const barHeight = dataArray[i] / 2;
 
-    ctx.fillStyle = "#00ff88";
+    ctx.fillStyle = color;
 
     ctx.fillRect(
       x,
@@ -365,6 +365,22 @@ function draw() {
 }
 
 draw();
+
+let energy = 0;
+
+for (let i = 0; i < bufferLength; i++) {
+  energy += dataArray[i];
+}
+
+energy = energy / bufferLength; // moyenne
+
+let color = "#00ff88"; // vert par défaut
+
+if (energy > 170) {
+  color = "#ff3b3b"; // rouge
+} else if (energy > 100) {
+  color = "#ffb300"; // orange
+}
 
 document.addEventListener("click", () => {
   audioCtx.resume();
