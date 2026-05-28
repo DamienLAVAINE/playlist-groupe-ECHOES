@@ -34,32 +34,42 @@ const tracks = [
    
 ];
 
+
 let current = 0;
 
 const audio = document.getElementById("audio");
 const title = document.getElementById("title");
 const playlistDiv = document.getElementById("playlist");
 
-// build playlist
+const progressBar = document.getElementById("progress-bar");
+const progressContainer = document.getElementById("progress-container");
+const progressHandle = document.getElementById("progress-handle");
+const currentTimeEl = document.getElementById("current-time");
+const durationEl = document.getElementById("duration");
+
+let isDragging = false;
+
+/* -------------------------
+   BUILD PLAYLIST SIDEBAR
+--------------------------*/
 tracks.forEach((t, i) => {
   const div = document.createElement("div");
-
   div.className = "track";
   div.innerText = t.name;
+  div.id = "track-" + i;
 
   div.onclick = () => playTrack(i);
-
-  div.id = "track-" + i;
 
   playlistDiv.appendChild(div);
 });
 
+/* -------------------------
+   PLAYER CONTROLS
+--------------------------*/
 function playTrack(i) {
-
   current = i;
 
   audio.src = tracks[i].file;
-
   title.innerText = tracks[i].name;
 
   audio.play();
@@ -88,62 +98,52 @@ function prevTrack() {
   playTrack(current);
 }
 
-audio.addEventListener("ended", () => {
-  nextTrack();
-});
+audio.addEventListener("ended", nextTrack);
 
+/* -------------------------
+   PLAYLIST DURATION
+--------------------------*/
 function calculatePlaylistDuration() {
-
   let totalSeconds = 0;
 
   tracks.forEach(track => {
-
-    const parts = track.duration.split(":");
-
-    const minutes = parseInt(parts[0]);
-    const seconds = parseInt(parts[1]);
-
-    totalSeconds += minutes * 60 + seconds;
+    const [min, sec] = track.duration.split(":").map(Number);
+    totalSeconds += min * 60 + sec;
   });
 
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
 
   let text = "";
-
-  if (hours > 0) {
-    text += hours + " h ";
-  }
-
+  if (hours > 0) text += hours + " h ";
   text += minutes + " min";
 
-  document.getElementById("playlist-duration").innerText =
-    text;
+  document.getElementById("playlist-duration").innerText = text;
 }
 
 calculatePlaylistDuration();
 
-const progressBar = document.getElementById("progress-bar");
-const currentTimeEl = document.getElementById("current-time");
-const durationEl = document.getElementById("duration");
-
-audio.addEventListener("timeupdate", updateProgress);
-
+/* -------------------------
+   PROGRESS BAR
+--------------------------*/
 audio.addEventListener("loadedmetadata", () => {
   durationEl.textContent = formatTime(audio.duration);
 });
 
+audio.addEventListener("timeupdate", updateProgress);
+
 function updateProgress() {
+  if (isDragging || !audio.duration) return;
 
   const percent = (audio.currentTime / audio.duration) * 100;
 
   progressBar.style.width = percent + "%";
+  progressHandle.style.left = percent + "%";
 
   currentTimeEl.textContent = formatTime(audio.currentTime);
 }
 
 function formatTime(seconds) {
-
   if (isNaN(seconds)) return "0:00";
 
   const mins = Math.floor(seconds / 60);
@@ -152,26 +152,9 @@ function formatTime(seconds) {
   return mins + ":" + (secs < 10 ? "0" : "") + secs;
 }
 
-const progressContainer = document.getElementById("progress-container");
-const progressHandle = document.getElementById("progress-handle");
-
-let isDragging = false;
-
-audio.addEventListener("timeupdate", updateProgress);
-
-function updateProgress() {
-
-  if (isDragging) return;
-
-  const percent = (audio.currentTime / audio.duration) * 100;
-
-  progressBar.style.width = percent + "%";
-
-  progressHandle.style.left = percent + "%";
-
-  currentTimeEl.textContent = formatTime(audio.currentTime);
-}
-
+/* -------------------------
+   SEEK + DRAG
+--------------------------*/
 progressContainer.addEventListener("click", seek);
 
 progressHandle.addEventListener("mousedown", () => {
@@ -184,90 +167,30 @@ document.addEventListener("mouseup", () => {
 
 document.addEventListener("mousemove", drag);
 
-function drag(e) {
-
-  if (!isDragging) return;
-
-  const rect = progressContainer.getBoundingClientRect();
-
-  let percent = (e.clientX - rect.left) / rect.width;
-
-  percent = Math.max(0, Math.min(1, percent));
-
-  progressBar.style.width = (percent * 100) + "%";
-
-  progressHandle.style.left = (percent * 100) + "%";
-
-  audio.currentTime = percent * audio.duration;
-}
-
 function seek(e) {
-
   const rect = progressContainer.getBoundingClientRect();
-
   const percent = (e.clientX - rect.left) / rect.width;
 
   audio.currentTime = percent * audio.duration;
 }
-const progressContainer = document.getElementById("progress-container");
-const progressHandle = document.getElementById("progress-handle");
 
-let isDragging = false;
-
-// update barre pendant lecture
-audio.addEventListener("timeupdate", () => {
-
-  if (isDragging) return;
-
-  const percent = (audio.currentTime / audio.duration) * 100;
-
-  progressBar.style.width = percent + "%";
-
-  progressHandle.style.left = percent + "%";
-
-});
-
-// clic simple dans la barre
-progressContainer.addEventListener("click", (e) => {
-
-  const rect = progressContainer.getBoundingClientRect();
-
-  const percent = (e.clientX - rect.left) / rect.width;
-
-  audio.currentTime = percent * audio.duration;
-
-});
-
-// début drag souris
-progressHandle.addEventListener("mousedown", () => {
-  isDragging = true;
-});
-
-// fin drag souris
-document.addEventListener("mouseup", () => {
-  isDragging = false;
-});
-
-// drag souris
-document.addEventListener("mousemove", (e) => {
-
+function drag(e) {
   if (!isDragging) return;
 
   const rect = progressContainer.getBoundingClientRect();
-
   let percent = (e.clientX - rect.left) / rect.width;
 
   percent = Math.max(0, Math.min(1, percent));
 
-  progressBar.style.width = (percent * 100) + "%";
-
-  progressHandle.style.left = (percent * 100) + "%";
+  progressBar.style.width = percent * 100 + "%";
+  progressHandle.style.left = percent * 100 + "%";
 
   audio.currentTime = percent * audio.duration;
+}
 
-});
-
-// MOBILE TOUCH
+/* -------------------------
+   MOBILE TOUCH SUPPORT
+--------------------------*/
 progressHandle.addEventListener("touchstart", () => {
   isDragging = true;
 });
@@ -277,21 +200,16 @@ document.addEventListener("touchend", () => {
 });
 
 document.addEventListener("touchmove", (e) => {
-
   if (!isDragging) return;
 
   const touch = e.touches[0];
-
   const rect = progressContainer.getBoundingClientRect();
 
   let percent = (touch.clientX - rect.left) / rect.width;
-
   percent = Math.max(0, Math.min(1, percent));
 
-  progressBar.style.width = (percent * 100) + "%";
-
-  progressHandle.style.left = (percent * 100) + "%";
+  progressBar.style.width = percent * 100 + "%";
+  progressHandle.style.left = percent * 100 + "%";
 
   audio.currentTime = percent * audio.duration;
-
 });
