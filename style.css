@@ -199,3 +199,8 @@ opacity: 1;
 #search::placeholder {
   color: rgba(255,255,255,0.6);
 }
+
+#repeat-btn.active {
+  background: white;
+  color: black;
+}
