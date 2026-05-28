@@ -24,7 +24,16 @@
   <div class="player">
     <h3 id="title">Sélectionne un morceau</h3>
 
-    <audio id="audio" controls></audio>
+<audio id="audio"></audio>
+
+<div class="progress-container" onclick="seek(event)">
+  <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<div class="time-info">
+  <span id="current-time">0:00</span>
+  <span id="duration">0:00</span>
+</div>
 
     <div class="controls">
       <button onclick="prevTrack()">⏮</button>
