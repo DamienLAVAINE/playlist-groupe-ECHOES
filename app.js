@@ -215,3 +215,89 @@ function seek(e) {
 
   audio.currentTime = percent * audio.duration;
 }
+const progressContainer = document.getElementById("progress-container");
+const progressHandle = document.getElementById("progress-handle");
+
+let isDragging = false;
+
+// update barre pendant lecture
+audio.addEventListener("timeupdate", () => {
+
+  if (isDragging) return;
+
+  const percent = (audio.currentTime / audio.duration) * 100;
+
+  progressBar.style.width = percent + "%";
+
+  progressHandle.style.left = percent + "%";
+
+});
+
+// clic simple dans la barre
+progressContainer.addEventListener("click", (e) => {
+
+  const rect = progressContainer.getBoundingClientRect();
+
+  const percent = (e.clientX - rect.left) / rect.width;
+
+  audio.currentTime = percent * audio.duration;
+
+});
+
+// début drag souris
+progressHandle.addEventListener("mousedown", () => {
+  isDragging = true;
+});
+
+// fin drag souris
+document.addEventListener("mouseup", () => {
+  isDragging = false;
+});
+
+// drag souris
+document.addEventListener("mousemove", (e) => {
+
+  if (!isDragging) return;
+
+  const rect = progressContainer.getBoundingClientRect();
+
+  let percent = (e.clientX - rect.left) / rect.width;
+
+  percent = Math.max(0, Math.min(1, percent));
+
+  progressBar.style.width = (percent * 100) + "%";
+
+  progressHandle.style.left = (percent * 100) + "%";
+
+  audio.currentTime = percent * audio.duration;
+
+});
+
+// MOBILE TOUCH
+progressHandle.addEventListener("touchstart", () => {
+  isDragging = true;
+});
+
+document.addEventListener("touchend", () => {
+  isDragging = false;
+});
+
+document.addEventListener("touchmove", (e) => {
+
+  if (!isDragging) return;
+
+  const touch = e.touches[0];
+
+  const rect = progressContainer.getBoundingClientRect();
+
+  let percent = (touch.clientX - rect.left) / rect.width;
+
+  percent = Math.max(0, Math.min(1, percent));
+
+  progressBar.style.width = (percent * 100) + "%";
+
+  progressHandle.style.left = (percent * 100) + "%";
+
+  audio.currentTime = percent * audio.duration;
+
+});
