@@ -158,15 +158,60 @@ function formatTime(seconds) {
   return mins + ":" + (secs < 10 ? "0" : "") + secs;
 }
 
+const progressContainer = document.getElementById("progress-container");
+const progressHandle = document.getElementById("progress-handle");
+
+let isDragging = false;
+
+audio.addEventListener("timeupdate", updateProgress);
+
+function updateProgress() {
+
+  if (isDragging) return;
+
+  const percent = (audio.currentTime / audio.duration) * 100;
+
+  progressBar.style.width = percent + "%";
+
+  progressHandle.style.left = percent + "%";
+
+  currentTimeEl.textContent = formatTime(audio.currentTime);
+}
+
+progressContainer.addEventListener("click", seek);
+
+progressHandle.addEventListener("mousedown", () => {
+  isDragging = true;
+});
+
+document.addEventListener("mouseup", () => {
+  isDragging = false;
+});
+
+document.addEventListener("mousemove", drag);
+
+function drag(e) {
+
+  if (!isDragging) return;
+
+  const rect = progressContainer.getBoundingClientRect();
+
+  let percent = (e.clientX - rect.left) / rect.width;
+
+  percent = Math.max(0, Math.min(1, percent));
+
+  progressBar.style.width = (percent * 100) + "%";
+
+  progressHandle.style.left = (percent * 100) + "%";
+
+  audio.currentTime = percent * audio.duration;
+}
+
 function seek(e) {
 
-  const container = e.currentTarget;
+  const rect = progressContainer.getBoundingClientRect();
 
-  const rect = container.getBoundingClientRect();
-
-  const x = e.clientX - rect.left;
-
-  const percent = x / rect.width;
+  const percent = (e.clientX - rect.left) / rect.width;
 
   audio.currentTime = percent * audio.duration;
 }
