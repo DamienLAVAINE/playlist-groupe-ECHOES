@@ -119,7 +119,7 @@ overflow: hidden;
 .progress-bar {
 height: 100%;
 width: 0%;
-background: #1db954;
+background: #FFC000;
 transition: width 0.1s linear;
 }
 
