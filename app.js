@@ -67,11 +67,14 @@ function playTrack(i) {
   });
 
   document.getElementById("track-" + i).classList.add("active");
-document.getElementById("track-" + i).scrollIntoView({
-  behavior: "smooth",
-  block: "center"
-});
+
+  document.getElementById("track-" + i).scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+
   audio.play();
+}
 }
 
 function playPause() {
