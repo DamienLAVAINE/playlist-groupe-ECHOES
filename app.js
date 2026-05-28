@@ -130,8 +130,3 @@ async function calculateTotalDuration() {
 }
 
 calculateTotalDuration();
-.track.active {
-background: #1db954;
-color: white;
-font-weight: bold;
-}
