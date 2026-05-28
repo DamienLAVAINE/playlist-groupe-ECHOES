@@ -132,7 +132,20 @@ function skip(seconds) {
   }
 }
 
-audio.addEventListener("ended", nextTrack);
+audio.addEventListener("ended", () => {
+
+  if (repeatMode) {
+
+    audio.currentTime = 0;
+    audio.play();
+
+  } else {
+
+    nextTrack();
+
+  }
+
+});
 
 function toggleRepeat() {
 
