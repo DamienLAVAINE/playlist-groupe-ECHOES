@@ -128,3 +128,45 @@ function calculatePlaylistDuration() {
 }
 
 calculatePlaylistDuration();
+
+const progressBar = document.getElementById("progress-bar");
+const currentTimeEl = document.getElementById("current-time");
+const durationEl = document.getElementById("duration");
+
+audio.addEventListener("timeupdate", updateProgress);
+
+audio.addEventListener("loadedmetadata", () => {
+  durationEl.textContent = formatTime(audio.duration);
+});
+
+function updateProgress() {
+
+  const percent = (audio.currentTime / audio.duration) * 100;
+
+  progressBar.style.width = percent + "%";
+
+  currentTimeEl.textContent = formatTime(audio.currentTime);
+}
+
+function formatTime(seconds) {
+
+  if (isNaN(seconds)) return "0:00";
+
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+
+  return mins + ":" + (secs < 10 ? "0" : "") + secs;
+}
+
+function seek(e) {
+
+  const container = e.currentTarget;
+
+  const rect = container.getBoundingClientRect();
+
+  const x = e.clientX - rect.left;
+
+  const percent = x / rect.width;
+
+  audio.currentTime = percent * audio.duration;
+}
