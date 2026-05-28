@@ -310,3 +310,58 @@ function toggleFullscreen() {
 
   }
 }
+const canvas = document.getElementById("visualizer");
+const ctx = canvas.getContext("2d");
+
+// Web Audio API
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const source = audioCtx.createMediaElementSource(audio);
+const analyser = audioCtx.createAnalyser();
+
+source.connect(analyser);
+analyser.connect(audioCtx.destination);
+
+analyser.fftSize = 64;
+
+const bufferLength = analyser.frequencyBinCount;
+const dataArray = new Uint8Array(bufferLength);
+
+// resize canvas
+function resizeCanvas() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
+function draw() {
+
+  requestAnimationFrame(draw);
+
+  analyser.getByteFrequencyData(dataArray);
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const barWidth = canvas.width / bufferLength;
+
+  let x = 0;
+
+  for (let i = 0; i < bufferLength; i++) {
+
+    const barHeight = dataArray[i] / 2;
+
+    ctx.fillStyle = "#00ff88";
+
+    ctx.fillRect(
+      x,
+      canvas.height - barHeight,
+      barWidth - 2,
+      barHeight
+    );
+
+    x += barWidth;
+  }
+}
+
+draw();
