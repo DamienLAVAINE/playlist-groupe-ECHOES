@@ -70,6 +70,7 @@ tracks.forEach((t, i) => {
    PLAYER CONTROLS
 --------------------------*/
 function playTrack(i) {
+  initAudio();
   current = i;
 
   audio.src = tracks[i].file;
@@ -313,23 +314,31 @@ function toggleFullscreen() {
 const canvas = document.getElementById("visualizer");
 const ctx = canvas.getContext("2d");
 
-// Web Audio API
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-const source = audioCtx.createMediaElementSource(audio);
-const analyser = audioCtx.createAnalyser();
+let audioCtx;
+let analyser;
+let source;
+let dataArray;
+let bufferLength;
 
-source.connect(analyser);
-analyser.connect(audioCtx.destination);
+const canvas = document.getElementById("visualizer");
+const ctx = canvas.getContext("2d");
 
-analyser.fftSize = 64;
+function initAudio() {
 
-const bufferLength = analyser.frequencyBinCount;
-const dataArray = new Uint8Array(bufferLength);
+  if (audioCtx) return;
 
-// resize canvas
-function resizeCanvas() {
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  source = audioCtx.createMediaElementSource(audio);
+
+  analyser = audioCtx.createAnalyser();
+  analyser.fftSize = 64;
+
+  source.connect(analyser);
+  analyser.connect(audioCtx.destination);
+
+  bufferLength = analyser.frequencyBinCount;
+  dataArray = new Uint8Array(bufferLength);
 }
 
 window.addEventListener("resize", resizeCanvas);
@@ -366,22 +375,49 @@ function draw() {
 
 draw();
 
-let energy = 0;
+function draw() {
 
-for (let i = 0; i < bufferLength; i++) {
-  energy += dataArray[i];
+  requestAnimationFrame(draw);
+
+  if (!analyser) return;
+
+  analyser.getByteFrequencyData(dataArray);
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const barWidth = canvas.width / bufferLength;
+
+  let energy = 0;
+
+  for (let i = 0; i < bufferLength; i++) {
+    energy += dataArray[i];
+  }
+
+  energy = energy / bufferLength;
+
+  let color = "#00ff88";
+
+  if (energy > 170) {
+    color = "#ff3b3b";
+  } else if (energy > 100) {
+    color = "#ffb300";
+  }
+
+  let x = 0;
+
+  for (let i = 0; i < bufferLength; i++) {
+
+    const barHeight = dataArray[i] / 2;
+
+    ctx.fillStyle = color;
+
+    ctx.fillRect(
+      x,
+      canvas.height - barHeight,
+      barWidth - 2,
+      barHeight
+    );
+
+    x += barWidth;
+  }
 }
-
-energy = energy / bufferLength; // moyenne
-
-let color = "#00ff88"; // vert par défaut
-
-if (energy > 170) {
-  color = "#ff3b3b"; // rouge
-} else if (energy > 100) {
-  color = "#ffb300"; // orange
-}
-
-document.addEventListener("click", () => {
-  audioCtx.resume();
-}, { once: true });
