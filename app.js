@@ -295,3 +295,18 @@ function filterTracks() {
   });
 
 }
+
+function toggleFullscreen() {
+
+  const container = document.querySelector(".container");
+
+  if (!document.fullscreenElement) {
+
+    container.requestFullscreen();
+
+  } else {
+
+    document.exitFullscreen();
+
+  }
+}
