@@ -69,18 +69,27 @@ tracks.forEach((t, i) => {
    PLAYER CONTROLS
 --------------------------*/
 function playTrack(i) {
-
   current = i;
 
   audio.src = tracks[i].file;
 
   title.innerText = tracks[i].name;
 
-  document.querySelectorAll(".track").forEach(t => {
-    t.classList.remove("active");
+  // retire ancienne sélection
+  document.querySelectorAll(".track").forEach(track => {
+    track.classList.remove("active");
   });
 
-  document.getElementById("track-" + i).classList.add("active");
+  // sélection active
+  const activeTrack = document.getElementById("track-" + i);
+
+  activeTrack.classList.add("active");
+
+  // scroll automatique
+  activeTrack.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
 
   audio.play();
 }
