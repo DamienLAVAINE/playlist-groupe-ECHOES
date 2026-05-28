@@ -36,6 +36,7 @@ const tracks = [
 
 
 let current = 0;
+let repeatMode = false;
 
 const audio = document.getElementById("audio");
 const title = document.getElementById("title");
