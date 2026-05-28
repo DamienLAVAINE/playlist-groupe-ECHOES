@@ -134,6 +134,19 @@ function skip(seconds) {
 
 audio.addEventListener("ended", nextTrack);
 
+function toggleRepeat() {
+
+  repeatMode = !repeatMode;
+
+  const btn = document.getElementById("repeat-btn");
+
+  if (repeatMode) {
+    btn.classList.add("active");
+  } else {
+    btn.classList.remove("active");
+  }
+}
+
 /* -------------------------
    PLAYLIST DURATION
 --------------------------*/
