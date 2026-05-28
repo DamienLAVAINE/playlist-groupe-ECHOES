@@ -62,12 +62,6 @@ function playTrack(i) {
 
   title.innerText = tracks[i].name;
 
-  document.querySelectorAll(".track").forEach(t => {
-    t.classList.remove("active");
-  });
-
-  document.getElementById("track-" + i).classList.add("active");
-
   document.getElementById("track-" + i).scrollIntoView({
     behavior: "smooth",
     block: "center"
