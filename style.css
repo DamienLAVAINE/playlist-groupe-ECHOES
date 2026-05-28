@@ -165,3 +165,22 @@ transition: opacity 0.2s;
 .progress-container:hover .progress-handle {
 opacity: 1;
 }
+
+#search {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: rgba(255,255,255,0.1);
+  color: white;
+
+  outline: none;
+  box-sizing: border-box;
+}
+
+#search::placeholder {
+  color: rgba(255,255,255,0.6);
+}
