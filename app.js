@@ -232,20 +232,25 @@ document.addEventListener("touchmove", (e) => {
 
   audio.currentTime = percent * audio.duration;
 });
-searchInput.addEventListener("input", () => {
+
+searchInput.addEventListener("keyup", filterTracks);
+
+function filterTracks() {
 
   const value = searchInput.value.toLowerCase();
 
-  document.querySelectorAll(".track").forEach(track => {
+  const tracksElements = document.querySelectorAll(".track");
 
-    const text = track.innerText.toLowerCase();
+  tracksElements.forEach(track => {
 
-    if (text.includes(value)) {
-      track.style.display = "block";
+    const text = track.textContent.toLowerCase();
+
+    if (text.indexOf(value) > -1) {
+      track.style.display = "";
     } else {
       track.style.display = "none";
     }
 
   });
 
-});
+}
