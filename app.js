@@ -365,3 +365,7 @@ function draw() {
 }
 
 draw();
+
+document.addEventListener("click", () => {
+  audioCtx.resume();
+}, { once: true });
