@@ -117,6 +117,20 @@ function prevTrack() {
   playTrack(current);
 }
 
+function skip(seconds) {
+
+  audio.currentTime += seconds;
+
+  // sécurité
+  if (audio.currentTime < 0) {
+    audio.currentTime = 0;
+  }
+
+  if (audio.currentTime > audio.duration) {
+    audio.currentTime = audio.duration;
+  }
+}
+
 audio.addEventListener("ended", nextTrack);
 
 /* -------------------------
