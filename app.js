@@ -98,4 +98,33 @@ audio.addEventListener("ended", () => {
   nextTrack();
 });
 
+function calculatePlaylistDuration() {
 
+  let totalSeconds = 0;
+
+  tracks.forEach(track => {
+
+    const parts = track.duration.split(":");
+
+    const minutes = parseInt(parts[0]);
+    const seconds = parseInt(parts[1]);
+
+    totalSeconds += minutes * 60 + seconds;
+  });
+
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+
+  let text = "";
+
+  if (hours > 0) {
+    text += hours + " h ";
+  }
+
+  text += minutes + " min";
+
+  document.getElementById("playlist-duration").innerText =
+    text;
+}
+
+calculatePlaylistDuration();
