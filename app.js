@@ -62,11 +62,6 @@ function playTrack(i) {
 
   title.innerText = tracks[i].name;
 
-  document.getElementById("track-" + i).scrollIntoView({
-    behavior: "smooth",
-    block: "center"
-  });
-
   audio.play();
 }
 }
