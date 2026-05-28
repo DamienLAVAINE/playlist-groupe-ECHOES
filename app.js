@@ -54,11 +54,13 @@ let isDragging = false;
 --------------------------*/
 tracks.forEach((t, i) => {
   const div = document.createElement("div");
+
   div.className = "track";
   div.innerText = t.name;
-  div.id = "track-" + i;
 
   div.onclick = () => playTrack(i);
+
+  div.id = "track-" + i;
 
   playlistDiv.appendChild(div);
 });
@@ -67,10 +69,18 @@ tracks.forEach((t, i) => {
    PLAYER CONTROLS
 --------------------------*/
 function playTrack(i) {
+
   current = i;
 
   audio.src = tracks[i].file;
+
   title.innerText = tracks[i].name;
+
+  document.querySelectorAll(".track").forEach(t => {
+    t.classList.remove("active");
+  });
+
+  document.getElementById("track-" + i).classList.add("active");
 
   audio.play();
 }
