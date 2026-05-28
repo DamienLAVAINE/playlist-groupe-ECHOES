@@ -40,7 +40,7 @@ let current = 0;
 const audio = document.getElementById("audio");
 const title = document.getElementById("title");
 const playlistDiv = document.getElementById("playlist");
-
+const searchInput = document.getElementById("search");
 const progressBar = document.getElementById("progress-bar");
 const progressContainer = document.getElementById("progress-container");
 const progressHandle = document.getElementById("progress-handle");
@@ -231,4 +231,21 @@ document.addEventListener("touchmove", (e) => {
   progressHandle.style.left = percent * 100 + "%";
 
   audio.currentTime = percent * audio.duration;
+});
+searchInput.addEventListener("input", () => {
+
+  const value = searchInput.value.toLowerCase();
+
+  document.querySelectorAll(".track").forEach(track => {
+
+    const text = track.innerText.toLowerCase();
+
+    if (text.includes(value)) {
+      track.style.display = "block";
+    } else {
+      track.style.display = "none";
+    }
+
+  });
+
 });
