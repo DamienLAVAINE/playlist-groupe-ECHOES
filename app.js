@@ -98,6 +98,38 @@ audio.addEventListener("ended", () => {
   nextTrack();
 });
 
+async function calculateTotalDuration() {
+
+  let totalSeconds = 0;
+
+  for (const track of tracks) {
+
+    const tempAudio = document.createElement('audio');
+
+    tempAudio.src = track.file;
+
+    await new Promise(resolve => {
+
+      tempAudio.addEventListener('loadedmetadata', () => {
+
+        totalSeconds += tempAudio.duration;
+
+        resolve();
+
+      });
+
+    });
+
+  }
+
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = Math.floor(totalSeconds % 60);
+
+  document.getElementById("playlist-duration").innerText =
+    `Durée totale : ${minutes} min ${seconds} sec`;
+}
+
+calculateTotalDuration();
 .track.active {
 background: #1db954;
 color: white;
