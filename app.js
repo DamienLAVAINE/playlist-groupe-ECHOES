@@ -339,19 +339,40 @@ function draw() {
 
   requestAnimationFrame(draw);
 
+  if (!analyser) return;
+
   analyser.getByteFrequencyData(dataArray);
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   const barWidth = canvas.width / bufferLength;
 
+  // 🔊 calcul énergie globale
+  let energy = 0;
+
+  for (let i = 0; i < bufferLength; i++) {
+    energy += dataArray[i];
+  }
+
+  energy = energy / bufferLength;
+
+  // 🎨 couleur selon énergie
+  let color = "#00ff88"; // 🟢 vert doux
+
+  if (energy > 170) {
+    color = "#ff3b3b"; // 🔴 rouge
+  } else if (energy > 100) {
+    color = "#ffb300"; // 🟠 orange
+  }
+
+  // 🎵 dessin des barres
   let x = 0;
 
   for (let i = 0; i < bufferLength; i++) {
 
     const barHeight = dataArray[i] / 2;
 
-    ctx.fillStyle = "#00ff88";
+    ctx.fillStyle = color;
 
     ctx.fillRect(
       x,
