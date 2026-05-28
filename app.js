@@ -43,16 +43,31 @@ const playlistDiv = document.getElementById("playlist");
 // build playlist
 tracks.forEach((t, i) => {
   const div = document.createElement("div");
+
   div.className = "track";
   div.innerText = t.name;
+
   div.onclick = () => playTrack(i);
+
+  div.id = "track-" + i;
+
   playlistDiv.appendChild(div);
 });
 
 function playTrack(i) {
+
   current = i;
+
   audio.src = tracks[i].file;
+
   title.innerText = tracks[i].name;
+
+  document.querySelectorAll(".track").forEach(t => {
+    t.classList.remove("active");
+  });
+
+  document.getElementById("track-" + i).classList.add("active");
+
   audio.play();
 }
 
@@ -82,3 +97,9 @@ function prevTrack() {
 audio.addEventListener("ended", () => {
   nextTrack();
 });
+
+.track.active {
+background: #1db954;
+color: white;
+font-weight: bold;
+}
