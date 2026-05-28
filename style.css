@@ -98,6 +98,10 @@ margin-bottom: 10px;
     width: 90px;
   }
 
-
+.track.active {
+background: #1db954;
+color: white;
+font-weight: bold;
+}
 
 }
