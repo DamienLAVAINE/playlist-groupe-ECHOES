@@ -64,7 +64,6 @@ function playTrack(i) {
 
   audio.play();
 }
-}
 
 function playPause() {
   if (!audio.src) {
