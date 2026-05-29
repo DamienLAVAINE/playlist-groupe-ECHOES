@@ -25,7 +25,7 @@ const tracks = [
   { name: "Banquet/BLOC PARTY", file: "audio/BLOC PARTY - Banquet.m4a", duration: "3:21" }, 
   { name: "Medley", file: "audio/MEDLEY - Enter rock to hell.mp3", duration: "6:14" }, 
   { name: "Song2(+0.5)/BLUR", file: "audio/BLUR - Song 2 (+ 0,5 ton).mp3", duration: "2:02" }, 
-  { name: "Cause toujours/ECHOES", file: "audio/ZOOM0236 - Cause toujours 26.05 remixé v1.mp3", duration: "4:29" },
+  { name: "Cause toujours/ECHOES", file: "audio/ZOOM0236 - Cause toujours 26.05 remixé 29.05.mp3", duration: "4:29" },
   { name: "The Pretender(avec presentation Echoes)/FOO FIGHTERS", file: "audio/Foo Fighters - The Pretender (version Echoes).mp3", duration: "6:18" },
   { name: "Zombie/THE CRANBERRIES", file: "audio/THE CRANBERRIES - Zombie.mp3", duration: "5:07" },
   { name: "7 Nation army/THE WHITE STRIPES", file: "audio/THE WHITE STRIPES - 7 Nation army (version Echoes).MP3", duration: "3:47" },
