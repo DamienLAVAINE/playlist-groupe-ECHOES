@@ -30,7 +30,7 @@ const tracks = [
   { name: "Zombie/THE CRANBERRIES", file: "audio/THE CRANBERRIES - Zombie.mp3", duration: "5:07" },
   { name: "7 Nation army/THE WHITE STRIPES", file: "audio/THE WHITE STRIPES - 7 Nation army (version Echoes).MP3", duration: "3:47" },
   { name: "QG(1er test)/ECHOES", file: "audio/ZOOM0293 - QG V8-2.MP3", duration: "4:12" },
-    
+  { name: "No more(Démo Corbier)/ECHOES", file: "Echoes - No more necessary (CB5).MP3", duration: "3:45" },
    
 ];
 
