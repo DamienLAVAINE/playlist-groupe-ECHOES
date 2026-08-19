@@ -7,7 +7,7 @@ const tracks = [
   { name: "Lonely day(+1.5)/SOAD", file: "audio/SOAD - Lonely Day (+1,5 ton)+solo basse.mp3", duration: "2:51" },
   { name: "Shadow of the day(Version Echoes)/LINKIN PARK", file: "audio/LP - Shadow of the day (version Echoes).m4a_mixed 24.01.mp3", duration: "4:20" },
   { name: "Help(Version Echoes)/THE BEATLES", file: "audio/ZOOM0125 - THE BEATLS -Help -(Version Echoes).mp3", duration: "4:00" },
-  { name: "Echoes(tu nous connais pas)/ECHOES", file: "audio/ZOOM0276 - Echoes - Echoes - tu nous connais pas- version du 18.08.26.mp3", duration: "4:45" },
+  { name: "Echoes(tu nous connais pas)/ECHOES", file: "audio/ZOOM0276 - Echoes  - Echoes - tu nous connais pas- version du 18.08.26.mp3", duration: "4:45" },
   { name: "Interlude/MUSE", file: "audio/MUSE - Interlude.mp3", duration: "0:36" },
   { name: "Hysteria/MUSE", file: "audio/MUSE - Hysteria.mp3", duration: "3:46" },
   { name: "Battez-vous/BRIGITTE", file: "audio/BRIGITTE - Battez-vous.mp3", duration: "4:04" },
