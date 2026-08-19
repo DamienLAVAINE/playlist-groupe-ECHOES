@@ -29,7 +29,7 @@ const tracks = [
   { name: "The Pretender(Sans presentation Echoes)/FOO FIGHTERS", file: "audio/Foo Fighters - The Pretender (version Echoes - sans presentation).mp3", duration: "4:33" },
   { name: "Zombie/THE CRANBERRIES", file: "audio/THE CRANBERRIES - Zombie.mp3", duration: "5:07" },
   { name: "7 Nation army/THE WHITE STRIPES", file: "audio/THE WHITE STRIPES - 7 Nation army (version Echoes).MP3", duration: "3:47" },
-  { name: "Nothing else matters(-1ton)/METALLICA", file: "audio/METALLICA - Nothing Else Matters (-1 ton).mp3", duration: "6:28" }
+  
     
    
 ];
