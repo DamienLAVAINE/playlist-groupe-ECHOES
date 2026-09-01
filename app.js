@@ -29,7 +29,7 @@ const tracks = [
   { name: "The Pretender(Sans presentation Echoes)/FOO FIGHTERS", file: "audio/Foo Fighters - The Pretender (version Echoes - sans presentation).mp3", duration: "4:33" },
   { name: "Zombie/THE CRANBERRIES", file: "audio/THE CRANBERRIES - Zombie.mp3", duration: "5:07" },
   { name: "7 Nation army/THE WHITE STRIPES", file: "audio/THE WHITE STRIPES - 7 Nation army (version Echoes).MP3", duration: "3:47" },
-  { name: "QG(1er test)/ECHOES", file: "audio/ZOOM0293 - QG V8-2.mp3", duration: "4:12" },
+  { name: "QGv9.2(126bpm)/ECHOES", file: "audio/QG V9.2(126bpm).mp3", duration: "4:19" },
   { name: "No more(Démo Corbier)/ECHOES", file: "audio/Echoes - No more necessary (CB5).mp3", duration: "3:45" },
    
 ];
