@@ -20,7 +20,7 @@ const tracks = [
   { name: "Celebrity skin/HOLE", file: "audio/HOLE - Celebrity Skin.mp3", duration: "2:43" },
   { name: "Sweet dreams/MARILYN MANSON", file: "audio/MARILYN MANSON - Sweet Dreams.mp3", duration: "4:51" },
   { name: "Nightcall(Version Echoes)/KAVINSKY", file: "audio/KAVINSKI - Nightcall (versin Echoes fin ok).mp3", duration: "5:12" },
-  { name: "Aie Aie Aie/ECHOES", file: "audio/ZOOM0144 - Echoes - Aya - remixée + fin net bla.mp3", duration: "3:50" }, 
+  { name: "Aie Aie Aie/ECHOES", file: "audio/Echoes -  Aie Aie Aie record 13.10.mp3", duration: "4:12" }, 
   { name: "In bloom/NIRVANA", file: "audio/NIRVANA - In Bloom.mp3", duration: "4:15" }, 
   { name: "Banquet/BLOC PARTY", file: "audio/BLOC PARTY - Banquet.m4a", duration: "3:21" }, 
   { name: "Medley 'avec solo ACDC", file: "audio/Medley - Enter rock to hell 19.08.26.mp3", duration: "6:55" }, 
