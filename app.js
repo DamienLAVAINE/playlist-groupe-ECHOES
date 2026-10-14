@@ -30,7 +30,8 @@ const tracks = [
   { name: "Zombie/THE CRANBERRIES", file: "audio/THE CRANBERRIES - Zombie.mp3", duration: "5:07" },
   { name: "7 Nation army/THE WHITE STRIPES", file: "audio/THE WHITE STRIPES - 7 Nation army (version Echoes).MP3", duration: "3:47" },
   { name: "QG(13.10)/ECHOES", file: "audio/ECHOES - QG record 13.10.mp3", duration: "4:26" },
-
+  { name: "Coeur statique(impro 13.10)/ECHOES", file: "audio/Echoes - Coeur static record 13.10.mp3", duration: "4:26" },
+  { name: "Setpiste13.10v2(démo)/ECHOES", file: "audio/setpiste 13.10v2.mp3", duration: "3:54" },
    
 ];
 
